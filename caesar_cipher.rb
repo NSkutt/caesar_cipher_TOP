@@ -20,6 +20,8 @@ class CaesarCipher
     msg = dials.map do |char|
       tooth = char.ord
       code = encode ? tooth + @shift : tooth - @shift
+      code -= 26 if code > 122
+      code += 26 if code < 65
       code.chr
     end
     msg * ''

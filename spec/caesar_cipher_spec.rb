@@ -12,6 +12,10 @@ RSpec.describe CaesarCipher do
       message = described_class.new('abcde')
       expect(message.caesar_cipher).to eql('defgh')
     end
+    it 'wraps from z to a' do
+      message = described_class.new('xyz', 10)
+      expect(message.caesar_cipher).to eql('hij')
+    end
   end
   describe '#caesar_decipher' do
     it 'unshifts and returns the input' do
