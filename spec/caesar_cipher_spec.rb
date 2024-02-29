@@ -36,5 +36,9 @@ RSpec.describe CaesarCipher do
       message = described_class.new('XYZ', 20)
       expect(message.spin(true)).to eql('RST')
     end
+    it 'only works on letters' do
+      message = described_class.new('1@ 4;', 5)
+      expect(message.spin(false)).to eql('1@ 4;')
+    end
   end
 end

@@ -18,6 +18,8 @@ class CaesarCipher
   def spin(encode)
     dials = @input.chars
     msg = dials.map do |char|
+      next char unless char.match?(/[a-z]/i)
+
       tooth = char.ord
       code = encode ? tooth + @shift : tooth - @shift
       code -= 26 if code > 122 || (tooth <= 90 && code > 90)
