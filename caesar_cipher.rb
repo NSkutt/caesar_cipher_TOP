@@ -16,7 +16,7 @@ class CaesarCipher
   end
 
   def spin(encode)
-    dials = @input.chars
+    dials = @input.gsub(/[[:space:]]/, '').chars
     msg = dials.map do |char|
       next char unless char.match?(/[a-z]/i)
 
