@@ -12,14 +12,6 @@ RSpec.describe CaesarCipher do
       message = described_class.new('abcde')
       expect(message.caesar_cipher).to eql('defgh')
     end
-    it 'wraps from z to a' do
-      message = described_class.new('xyz', 10)
-      expect(message.caesar_cipher).to eql('hij')
-    end
-    it 'wraps from a to z' do
-      message = described_class.new('abc', -10)
-      expect(message.caesar_cipher).to eql('qrs')
-    end
   end
   describe '#caesar_decipher' do
     it 'unshifts and returns the input' do
@@ -29,6 +21,20 @@ RSpec.describe CaesarCipher do
     it 'unshifts without a specified number' do
       message = described_class.new('defgh')
       expect(message.caesar_decipher).to eql('abcde')
+    end
+  end
+  describe 'spin' do
+    it 'wraps from z to a' do
+      message = described_class.new('xyz', 10)
+      expect(message.spin(true)).to eql('hij')
+    end
+    it 'wraps from a to z' do
+      message = described_class.new('abc', -10)
+      expect(message.spin(true)).to eql('qrs')
+    end
+    it 'maintains case specifics' do
+      message = described_class.new('XYZ', 20)
+      expect(message.spin(true)).to eql('RST')
     end
   end
 end
